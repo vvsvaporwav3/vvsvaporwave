@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vv$ Vaporwav3 — My Conscience</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="My Conscience">
+<meta name="theme-color" content="#241B2F">
+<style>
+  :root{
+    --plum:#241B2F;
+    --plum-deep:#160f1e;
+    --lavender:#C9B6E4;
+    --pink:#F3C9D8;
+    --mint:#BFEAE0;
+    --cream:#F6F1F0;
+    --gold:#E8C99B;
+    --line:rgba(246,241,240,0.14);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(201,182,228,0.16), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 15%, rgba(243,201,216,0.14), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(191,234,224,0.10), transparent 60%),
+      var(--plum-deep);
+    color:var(--cream);
+    font-family: 'Iowan Old Style','Palatino Linotype', Georgia, serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .haze{ animation: drift 26s ease-in-out infinite alternate; }
+    .orb{ animation: breathe 6s ease-in-out infinite; }
+    .float1{ animation: floaty 9s ease-in-out infinite; }
+    .float2{ animation: floaty 11s ease-in-out infinite 1.2s; }
+    .float3{ animation: floaty 10s ease-in-out infinite 0.6s; }
+    .grain::after{ animation: grainshift 1.4s steps(6) infinite; }
+  }
+  @keyframes drift{
+    0%{ transform: translate3d(0,0,0) scale(1); }
+    100%{ transform: translate3d(-2%, 3%, 0) scale(1.05); }
+  }
+  @keyframes breathe{
+    0%,100%{ transform: scale(1); opacity:0.9; }
+    50%{ transform: scale(1.06); opacity:1; }
+  }
+  @keyframes floaty{
+    0%,100%{ transform: translateY(0px); }
+    50%{ transform: translateY(-10px); }
+  }
+  @keyframes grainshift{
+    0%{ transform:translate(0,0); } 100%{ transform:translate(-2%,-2%); }
+  }
+
+  .haze{
+    position:fixed; inset:-10%; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(201,182,228,0.10), transparent 40%),
+      radial-gradient(circle at 70% 70%, rgba(243,201,216,0.08), transparent 45%);
+    filter: blur(30px);
+  }
+  .grain{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;}
+  .grain::after{
+    content:""; position:absolute; inset:-50%;
+    background-image: repeating-radial-gradient(circle at 0 0, transparent 0, rgba(255,255,255,0.6) 1px, transparent 2px);
+    background-size: 3px 3px;
+  }
+
+  main{ position:relative; z-index:2; max-width:640px; margin:0 auto; padding:0 24px 80px; }
+
+  /* ---- iOS install banner ---- */
+  #install-banner{
+    position:fixed; left:0; right:0; bottom:0; z-index:50;
+    display:none;
+    background: linear-gradient(180deg, rgba(36,27,47,0.5), rgba(22,15,30,0.97));
+    backdrop-filter: blur(14px);
+    border-top:1px solid var(--line);
+    padding:14px 18px calc(14px + env(safe-area-inset-bottom));
+    font-family: -apple-system, 'SF Pro Text', Helvetica, sans-serif;
+  }
+  #install-banner.show{ display:flex; align-items:center; gap:12px; }
+  #install-banner .icon{
+    width:38px; height:38px; border-radius:10px; flex:none;
+    background:linear-gradient(135deg,var(--lavender),var(--pink));
+    display:flex;align-items:center;justify-content:center; font-size:18px;
+  }
+  #install-banner p{ margin:0; font-size:13px; line-height:1.4; color:var(--cream); opacity:0.92; flex:1; }
+  #install-banner b{ color:var(--gold); font-weight:600; }
+  #install-banner button{
+    background:none;border:none;color:var(--cream); opacity:0.55; font-size:20px; padding:4px 6px; cursor:pointer; flex:none;
+  }
+  .share-glyph{ display:inline-block; transform:translateY(2px); }
+
+  /* ---- hero ---- */
+  header{ padding:64px 0 28px; text-align:center; }
+  .eyebrow{
+    font-family:-apple-system, sans-serif; font-size:11px; letter-spacing:0.35em; text-transform:uppercase;
+    color:var(--mint); opacity:0.8; margin-bottom:22px;
+  }
+  .orb-wrap{ display:flex; justify-content:center; margin-bottom:26px; }
+  .orb{
+    width:120px; height:120px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.9), var(--lavender) 35%, var(--pink) 65%, transparent 100%);
+    box-shadow: 0 0 60px 10px rgba(201,182,228,0.35), 0 0 120px 30px rgba(243,201,216,0.15);
+    position:relative;
+  }
+  .orb::before{
+    content:"☎"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:38px; color:rgba(22,15,30,0.55); filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+  }
+  h1{
+    font-size:clamp(34px,9vw,54px); font-weight:400; line-height:1.02; margin:0 0 6px;
+    letter-spacing:0.01em;
+    background: linear-gradient(180deg, var(--cream), var(--lavender) 70%, var(--pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  h1 em{ font-style:italic; }
+  .subtitle{ font-size:15px; letter-spacing:0.06em; color:var(--gold); opacity:0.85; margin-bottom:18px; font-family:-apple-system,sans-serif;}
+  .tagline{
+    font-size:17px; line-height:1.65; color:var(--cream); opacity:0.82; max-width:440px; margin:0 auto 8px;
+  }
+  .question{ font-size:15px; opacity:0.65; margin-top:18px; font-style:italic; }
+
+  /* ---- section labels ---- */
+  .divider{ display:flex; align-items:center; gap:12px; margin:50px 0 22px; font-family:-apple-system,sans-serif; }
+  .divider span{ font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--mint); opacity:0.7; white-space:nowrap; }
+  .divider .line{ flex:1; height:1px; background:linear-gradient(90deg, var(--line), transparent); }
+
+  /* ---- link grid ---- */
+  .links{ display:flex; flex-direction:column; gap:12px; }
+  .linkcard{
+    display:flex; align-items:center; gap:14px;
+    padding:16px 18px; border-radius:18px;
+    background: linear-gradient(145deg, rgba(246,241,240,0.06), rgba(246,241,240,0.02));
+    border:1px solid var(--line);
+    text-decoration:none; color:var(--cream);
+    transition: transform .25s ease, background .25s ease, border-color .25s ease;
+    font-family:-apple-system, sans-serif;
+  }
+  .linkcard:active{ transform: scale(0.98); }
+  @media (hover:hover){
+    .linkcard:hover{ background: linear-gradient(145deg, rgba(246,241,240,0.11), rgba(246,241,240,0.03)); border-color:rgba(232,201,155,0.4); transform: translateY(-2px); }
+  }
+  .glyph{
+    width:44px; height:44px; border-radius:13px; flex:none;
+    display:flex; align-items:center; justify-content:center; font-size:19px;
+  }
+  .glyph.spotify{ background:linear-gradient(135deg,#BFEAE0,#8fd3c4); }
+  .glyph.apple{ background:linear-gradient(135deg,#F3C9D8,#e6a9c1); }
+  .glyph.ig{ background:linear-gradient(135deg,#C9B6E4,#a98fd6); }
+  .glyph.igp{ background:linear-gradient(135deg,#E8C99B,#d9ac68); }
+  .glyph.cash{ background:linear-gradient(135deg,#9be89b,#5cc16a); }
+  .glyph.play{ background:linear-gradient(135deg,#cbb7ff,#f3c9d8); }
+  .linktext{ flex:1; min-width:0; }
+  .linktext .name{ font-size:15.5px; font-weight:600; letter-spacing:0.01em; }
+  .linktext .desc{ font-size:12.5px; color:var(--cream); opacity:0.55; margin-top:1px; }
+  .arrow{ opacity:0.35; font-size:15px; flex:none; }
+
+  /* ---- floating decorative row ---- */
+  .drift-row{ display:flex; justify-content:center; gap:26px; margin:46px 0 8px; }
+  .drift-row .glyph-lg{ font-size:26px; opacity:0.55; }
+
+  footer{ text-align:center; margin-top:60px; font-family:-apple-system,sans-serif; }
+  footer .brand{ font-size:12px; letter-spacing:0.3em; text-transform:uppercase; color:var(--lavender); opacity:0.6; }
+  footer .sub{ font-size:11px; color:var(--cream); opacity:0.35; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<div class="haze"></div>
+<div class="grain"></div>
+
+<main>
+  <header>
+    <div class="eyebrow">Vv$ Vaporwav3 · Cosmic Empire™</div>
+    <div class="orb-wrap"><div class="orb"></div></div>
+    <h1>My <em>Conscience</em></h1>
+    <div class="subtitle">the voice that stays awake when the world goes offline</div>
+    <p class="tagline">Vaporwave × Dreamcore × Liminal Space × Alternative Hip-Hop — a song, a world, a signal still transmitting after everyone else has logged off.</p>
+    <p class="question">If your conscience could call tonight… would you answer?</p>
+  </header>
+
+  <a class="linkcard" href="https://share.icloud.com/photos/070vN5iHBZ_mCKrQRz6Gjvg_Q" target="_blank" rel="noopener">
+    <div class="glyph play">▶</div>
+    <div class="linktext">
+      <div class="name">Listen — My Conscience</div>
+      <div class="desc">Enter the signal</div>
+    </div>
+    <div class="arrow">↗</div>
+  </a>
+
+  <div class="divider"><span>Stream</span><div class="line"></div></div>
+  <div class="links">
+    <a class="linkcard" href="https://open.spotify.com/artist/67DpjJ6ca9CTsNkUFYTKVW" target="_blank" rel="noopener">
+      <div class="glyph spotify">♫</div>
+      <div class="linktext"><div class="name">Spotify</div><div class="desc">Vv$ Vaporwav3, artist page</div></div>
+      <div class="arrow">↗</div>
+    </a>
+    <a class="linkcard" href="https://music.apple.com/us/artist/vv%24-vaporwav3/1585874089" target="_blank" rel="noopener">
+      <div class="glyph apple"></div>
+      <div class="linktext"><div class="name">Apple Music</div><div class="desc">Vv$ Vaporwav3, artist page</div></div>
+      <div class="arrow">↗</div>
+    </a>
+  </div>
+
+  <div class="divider"><span>Follow</span><div class="line"></div></div>
+  <div class="links">
+    <a class="linkcard" href="https://www.instagram.com/vvsvaporwave" target="_blank" rel="noopener">
+      <div class="glyph ig">◎</div>
+      <div class="linktext"><div class="name">@vvsvaporwave</div><div class="desc">Instagram — the world behind the sound</div></div>
+      <div class="arrow">↗</div>
+    </a>
+    <a class="linkcard" href="https://www.instagram.com/attractiveproductions" target="_blank" rel="noopener">
+      <div class="glyph igp">◎</div>
+      <div class="linktext"><div class="name">@attractiveproductions</div><div class="desc">Instagram — visuals &amp; production</div></div>
+      <div class="arrow">↗</div>
+    </a>
+  </div>
+
+  <div class="divider"><span>Support</span><div class="line"></div></div>
+  <div class="links">
+    <a class="linkcard" href="https://cash.app/$pay4mymusic" target="_blank" rel="noopener">
+      <div class="glyph cash">$</div>
+      <div class="linktext"><div class="name">$pay4mymusic</div><div class="desc">Cash App — fuel the next release</div></div>
+      <div class="arrow">↗</div>
+    </a>
+  </div>
+
+  <div class="drift-row">
+    <span class="glyph-lg float1">✦</span>
+    <span class="glyph-lg float2">☾</span>
+    <span class="glyph-lg float3">✧</span>
+  </div>
+
+  <footer>
+    <div class="brand">Vv$ Vaporwav3</div>
+    <div class="sub">My Conscience · Cosmic Empire™</div>
+  </footer>
+</main>
+
+<div id="install-banner">
+  <div class="icon">☾</div>
+  <p>Keep the signal close — tap <b>Share</b> <span class="share-glyph">⬆️</span> then <b>Add to Home Screen</b> for the full app feel.</p>
+  <button aria-label="dismiss" onclick="document.getElementById('install-banner').classList.remove('show')">×</button>
+</div>
+
+<script>
+  (function(){
+    var isIOS = /iP(hone|od|iPad)/.test(navigator.userAgent);
+    var isSafari = /^((?!chrome|android|crios|fxios).)*safari/i.test(navigator.userAgent);
+    var isStandalone = window.navigator.standalone === true;
+    var dismissed = localStorage.getItem('vvs_install_dismissed');
+    if(isIOS && isSafari && !isStandalone && !dismissed){
+      setTimeout(function(){
+        document.getElementById('install-banner').classList.add('show');
+      }, 1200);
+    }
+    document.getElementById('install-banner').addEventListener('click', function(e){
+      if(e.target.tagName === 'BUTTON'){ localStorage.setItem('vvs_install_dismissed','1'); }
+    });
+  })();
+</script>
+
+</body>
+</html>
